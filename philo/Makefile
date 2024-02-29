@@ -4,6 +4,7 @@ CFLAGS = -g -Wall -Wextra -Werror
 
 SRC =	main.c \
 		input_check.c \
+		init.c \
 		utils.c \
 		monitor.c \
 		threads.c \

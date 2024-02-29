@@ -6,7 +6,7 @@
 /*   By: zhedlund <zhedlund@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 16:50:49 by zhedlund          #+#    #+#             */
-/*   Updated: 2024/02/28 22:23:06 by zhedlund         ###   ########.fr       */
+/*   Updated: 2024/02/29 21:26:36 by zhedlund         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,14 @@ typedef struct s_philo
 {
 	int				id;
 	int				philo_count;
-	size_t			time_to_die;
-	size_t			time_to_eat;
-	size_t			time_to_sleep;
+	int				time_to_die;
+	int				time_to_eat;
+	int				time_to_sleep;
 	int				times_to_eat;
 	int				eating;
 	int				eat_count;
-	size_t			start_time;
-	size_t			last_meal;
+	int				start_time;
+	int				last_meal;
 	int				*dead;
 	pthread_t		thread;
 	pthread_mutex_t	*right_fork;
@@ -51,16 +51,27 @@ typedef struct s_sim
 	pthread_mutex_t	dead_lock;
 	pthread_mutex_t	meal_lock;
 	pthread_mutex_t	print_lock;
-	t_philo			*philos;
+	t_philo			*philo;
 }					t_sim;
 
 
 int		is_valid_input(int argc, char **argv);
 void	init_simulation(t_philo *philo, t_sim **simulation, pthread_mutex_t *forks,
 			char **argv);
+void	print_philo(t_philo *philo, char *str);
+int		create_threads(t_sim *simulation);
+void	*philo_routine(void *philo_ptr);
+void	*monitor(void *philo_ptr);
+int		get_time(void);
+void	init_input(t_philo *philo, char **argv);
+void	init_philo(t_philo *philo, t_sim **simulation, pthread_mutex_t *forks,
+			char **argv);
+void	init_forks(pthread_mutex_t *forks, int philo_count);
+void	destroy_mutexes(t_sim *simulation);
 
+/* utils */
 int		ft_atoi(const char *str);
 int		ft_isdigit(int c);
-int		ft_strlen(const char *str);
+size_t	ft_strlen(const char *str);
 
 #endif

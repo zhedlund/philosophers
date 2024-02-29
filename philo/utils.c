@@ -6,11 +6,11 @@
 /*   By: zhedlund <zhedlund@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 18:23:28 by zhedlund          #+#    #+#             */
-/*   Updated: 2024/02/28 18:25:19 by zhedlund         ###   ########.fr       */
+/*   Updated: 2024/02/29 21:09:00 by zhedlund         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
+#include "philo.h"
 
 size_t	ft_strlen(const char *str)
 {

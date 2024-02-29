@@ -6,7 +6,7 @@
 /*   By: zhedlund <zhedlund@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 18:25:36 by zhedlund          #+#    #+#             */
-/*   Updated: 2024/02/28 21:29:56 by zhedlund         ###   ########.fr       */
+/*   Updated: 2024/02/29 20:42:16 by zhedlund         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static int	check_args(int argc, char **argv)
 		{
 			if (!ft_isdigit(argv[i][j]))
 			{
-				printf("Error: arguments must be numbers\n");
+				printf("Error: invalid arguments\n");
 				return (0);
 			}
 			j++;
@@ -59,24 +59,12 @@ int	is_valid_input(int argc, char **argv)
 	if (!check_args(argc, argv))
 		return (0);
 	if (argc < 5 || argc > 6)
-	{
-		printf("Error: number of arguments must be between 5 and 6\n");
-		return (0);
-	}
+		return(printf("Error: invalid number of arguments\n"), 0);
 	if (ft_atoi(argv[1]) <= 0 || ft_atoi(argv[1]) > MAX_PHILOS)
-	{
-		printf("Error: number of philosophers must be between 2 and 200\n");
-		return (0);
-	}
+		return(printf("Error: invalid number of philos\n"), 0);
 	if (ft_atoi(argv[2]) < 1 || ft_atoi(argv[3]) < 1 || ft_atoi(argv[4]) < 1)
-	{
-		printf("Error: time_to_die, time_to_eat and time_to_sleep must be at least 1\n");
-		return (0);
-	}
+		return(printf("Error: invalid time_to_die, time_to_eat, time_to_sleep\n"), 0);
 	if (argc == 6 && ft_atoi(argv[5]) < 0)
-	{
-		printf("Error: number_of_times_each_philosopher_must_eat must be at least 1\n");
-		return (0);
-	}
+		return(printf("Error: invalid number_of_times_each_philosopher_must_eat\n"), 0);
 	return (1);
 }

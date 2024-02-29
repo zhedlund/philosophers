@@ -6,7 +6,7 @@
 /*   By: zhedlund <zhedlund@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 21:33:24 by zhedlund          #+#    #+#             */
-/*   Updated: 2024/02/28 22:28:46 by zhedlund         ###   ########.fr       */
+/*   Updated: 2024/02/29 21:22:11 by zhedlund         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,14 +73,13 @@ void	init_forks(pthread_mutex_t *forks, int philo_count)
 
 void	init_simulation(t_philo *philo, t_sim **simulation,
 							pthread_mutex_t *forks, char **argv)
-{
-	int	i;
-	
-	simulation->dead_flag = 0;
-	simulation->philo = philo;
+{	
+	(*simulation)->dead_flag = 0;
+	(*simulation)->philo = philo;
 	pthread_mutex_init(&(*simulation)->dead_lock, NULL);
 	pthread_mutex_init(&(*simulation)->meal_lock, NULL);
 	pthread_mutex_init(&(*simulation)->print_lock, NULL);
 	init_forks(forks, ft_atoi(argv[1]));
-	init_philo(&philo, simulation, &forks, argv);
+	init_philo(philo, simulation, forks, argv);
 }
+

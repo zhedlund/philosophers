@@ -6,7 +6,7 @@
 /*   By: zhedlund <zhedlund@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 16:52:31 by zhedlund          #+#    #+#             */
-/*   Updated: 2024/02/28 22:42:14 by zhedlund         ###   ########.fr       */
+/*   Updated: 2024/02/29 21:27:34 by zhedlund         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	main(int argc, char **argv)
 	if (!is_valid_input(argc, argv))
 		return (1);
 	init_simulation(philo, &simulation, forks, argv); // init structs
-	start_simulation(&simulation, forks); // create threads, run loop
-	end_simulation() //destroy_mutexes
+	create_threads(simulation); // create threads, run loop
+	destroy_mutexes(simulation); // destroy mutexes
 	return (0);
 }
