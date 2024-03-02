@@ -1,6 +1,7 @@
 NAME = philo
 CC = cc
-CFLAGS = -g -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
+LFLAGS = -pthread
 
 SRC =	main.c \
 		input_check.c \
@@ -14,8 +15,8 @@ OBJ = $(SRC:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $^ -o $@
-
+	$(CC) $(OBJ) $(LFLAGS) -o $(NAME)
+	
 .c.o:
 	$(CC) $(CFLAGS) -c $< -o $@
 

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   testing.c                                          :+:      :+:    :+:   */
+/*   test_threads.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zhedlund <zhedlund@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 21:29:42 by zhedlund          #+#    #+#             */
-/*   Updated: 2024/02/29 21:36:39 by zhedlund         ###   ########.fr       */
+/*   Updated: 2024/03/02 16:17:08 by zhedlund         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void    example_3()
     *num = 0;
     if (pthread_create(&t1, NULL, routine_2, num))
         exit_on_error(num, 2);
-    if (pthread_create(&t2, NULL, routine_2, num))
+    if (pthread_create(&t2, NULL, routine_2, num))ft_usleep(1);
         exit_on_error(num, 2);
     if (pthread_join(t1, NULL))
         exit_on_error(num, 3);
@@ -109,8 +109,8 @@ void    example_1()
 
 int main()
 {
-    //example_1();
-	//example_2();
+    example_1();
+	example_2();
 	example_3();
 	
     return (0);

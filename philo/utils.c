@@ -6,7 +6,7 @@
 /*   By: zhedlund <zhedlund@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 18:23:28 by zhedlund          #+#    #+#             */
-/*   Updated: 2024/02/29 21:09:00 by zhedlund         ###   ########.fr       */
+/*   Updated: 2024/03/02 17:24:04 by zhedlund         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,18 @@
 size_t	ft_strlen(const char *str)
 {
 	int	len;
-
+	
+	if	(str == NULL)
+		return (0);
 	len = 0;
 	while (str[len])
 		len++;
 	return (len);
+}
+
+void	ft_putstr_fd(char *s, int fd)
+{
+	write(fd, s, ft_strlen(s));
 }
 
 int	ft_isdigit(int c)

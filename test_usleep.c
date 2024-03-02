@@ -6,7 +6,7 @@
 /*   By: zhedlund <zhedlund@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 21:41:55 by zhedlund          #+#    #+#             */
-/*   Updated: 2024/02/29 21:50:12 by zhedlund         ###   ########.fr       */
+/*   Updated: 2024/03/01 17:47:17 by zhedlund         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,17 @@ int		get_time(void)
 {
 	struct timeval	time;
 
-	gettimeofday(&time, NULL);
+	if (gettimeofday(&time, NULL) == -1)
+		ft_putstr_fd("Error: gettimeofday\n", 2);
 	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
 }
 
-void	ft_usleep(unsigned int sleep_time)
+void	ft_usleep(unsigned int sleep_time_ms)
 {
 	unsigned int	start;
 
 	start = get_time();
-	while ((get_time() - start) < sleep_time)
+	while ((get_time() - start) < sleep_time_ms)
 		usleep(500);
 }
 

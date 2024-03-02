@@ -6,7 +6,7 @@
 /*   By: zhedlund <zhedlund@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 21:40:24 by zhedlund          #+#    #+#             */
-/*   Updated: 2024/02/29 21:51:58 by zhedlund         ###   ########.fr       */
+/*   Updated: 2024/03/01 16:08:17 by zhedlund         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,16 @@ void    example_2()
     uint64_t    now;
 
     start_time = get_time();
-    ft_usleep(10000); // accepts in microseconds
+    ft_usleep(50); // accepts in microseconds
     now = get_time();
     printf("%ld milliseconds passed since the start\n", now - start_time);
 }
 
 int main()
 {
-    example_1();
+	struct timeval	time;
+    
+	example_1();
     example_2();
 
     return (0);
