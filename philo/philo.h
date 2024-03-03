@@ -6,7 +6,7 @@
 /*   By: zhedlund <zhedlund@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 16:50:49 by zhedlund          #+#    #+#             */
-/*   Updated: 2024/03/02 17:24:20 by zhedlund         ###   ########.fr       */
+/*   Updated: 2024/03/03 20:41:54 by zhedlund         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,24 +22,18 @@
 # include <limits.h>
 # include <stdbool.h>
 
-# define MAX_PHILOS 300
-
+# define MAX_PHILOS 200
 typedef struct s_philo
 {
-	pthread_t		philo_thread;
+	pthread_t		thread;
 	int				id;
-	int				philo_count;
-	size_t			time_to_die;
-	size_t			time_to_eat;
-	size_t			time_to_sleep;
-	size_t			start_time;
-	size_t			last_meal;
-	int				num_times_to_eat;
+	int				start_time;
+	int				last_meal;
 	int				eating;
 	int				eat_count;
 	int				*philo_dead;
-	pthread_mutex_t	*right_fork;
 	pthread_mutex_t	*left_fork;
+	pthread_mutex_t	*right_fork;
 	pthread_mutex_t	*print_lock;
 	pthread_mutex_t	*dead_lock;
 	pthread_mutex_t	*meal_lock;
@@ -47,7 +41,13 @@ typedef struct s_philo
 
 typedef struct s_sim
 {
+	int				num_of_philos;
+	int				time_to_die;
+	int				time_to_eat;
+	int				time_to_sleep;
+	int				times_must_eat;
 	int				dead_flag;
+	pthread_t		monitor;
 	pthread_mutex_t	dead_lock;
 	pthread_mutex_t	meal_lock;
 	pthread_mutex_t	print_lock;
@@ -56,7 +56,7 @@ typedef struct s_sim
 
 
 size_t	get_time(void);
-int		ft_usleep(unsigned int sleep_time_ms);
+int		ft_usleep(unsigned sleep_ms);
 int		is_valid_input(int argc, char **argv);
 
 /* utils */
