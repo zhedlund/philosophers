@@ -6,7 +6,7 @@
 /*   By: zhedlund <zhedlund@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 16:50:49 by zhedlund          #+#    #+#             */
-/*   Updated: 2024/03/03 20:41:54 by zhedlund         ###   ########.fr       */
+/*   Updated: 2024/03/03 22:00:02 by zhedlund         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,26 +26,26 @@
 typedef struct s_philo
 {
 	pthread_t		thread;
-	int				id;
-	int				start_time;
-	int				last_meal;
-	int				eating;
-	int				eat_count;
-	int				*philo_dead;
-	pthread_mutex_t	*left_fork;
-	pthread_mutex_t	*right_fork;
-	pthread_mutex_t	*print_lock;
-	pthread_mutex_t	*dead_lock;
-	pthread_mutex_t	*meal_lock;
-}					t_philo;
-
-typedef struct s_sim
-{
 	int				num_of_philos;
 	int				time_to_die;
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				times_must_eat;
+	int				id;
+	int				start_time;
+	int				last_meal;
+	int				eating;
+	int				eat_count;
+	int				*dead;
+	pthread_mutex_t	*left_fork;
+	pthread_mutex_t	*right_fork;
+	pthread_mutex_t	*dead_lock;
+	pthread_mutex_t	*meal_lock;
+	pthread_mutex_t	*print_lock;
+}					t_philo;
+
+typedef struct s_sim
+{
 	int				dead_flag;
 	pthread_t		monitor;
 	pthread_mutex_t	dead_lock;
@@ -55,7 +55,7 @@ typedef struct s_sim
 }					t_sim;
 
 
-size_t	get_time(void);
+int	get_time(void);
 int		ft_usleep(unsigned sleep_ms);
 int		is_valid_input(int argc, char **argv);
 
