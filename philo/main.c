@@ -6,7 +6,7 @@
 /*   By: zhedlund <zhedlund@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 16:52:31 by zhedlund          #+#    #+#             */
-/*   Updated: 2024/03/03 23:19:35 by zhedlund         ###   ########.fr       */
+/*   Updated: 2024/03/04 21:01:54 by zhedlund         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,44 +52,21 @@ int deadlock(t_philo *philo)
 
 int philo_died(t_philo *philo)
 {
-	pthread_mutex_lock(philo->meal_lock);
-	if (get_time() - philo->last_meal >= philo->time_to_die && philo->eating == 0)
-	{
-		pthread_mutex_unlock(philo->meal_lock);
-		print_output(philo, "died");
-		pthread_mutex_lock(philo->dead_lock);
-		*philo->dead = 1;
-		return(pthread_mutex_unlock(philo->dead_lock), 1);
-	}
-	pthread_mutex_unlock(philo->meal_lock);
-	return (0);
-}
-
-int	philosopher_dead(t_philo *philo, int time_to_die)
-{
-	pthread_mutex_lock(philo->meal_lock);
-	if (get_time() - philo->last_meal >= time_to_die
-		&& philo->eating == 0)
-		return (pthread_mutex_unlock(philo->meal_lock), 1);
-	pthread_mutex_unlock(philo->meal_lock);
-	return (0);
-}
-
-int	check_if_dead(t_philo *philos)
-{
-	int	i;
-
+	int i;
+	
 	i = 0;
-	while (i < philos[0].num_of_philos)
+	while (i <= philo[0].num_of_philos)
 	{
-		if (philosopher_dead(&philos[i], philos[i].time_to_die))
+		pthread_mutex_lock(philo->meal_lock);
+		if (get_time() - philo->last_meal >= philo->time_to_die && philo->eating == 0)
 		{
-			print_output(&philos[i], "died");
-			pthread_mutex_lock(philos[0].dead_lock);
-			*philos->dead = 1;
-			pthread_mutex_unlock(philos[0].dead_lock);
-			return (1);
+			pthread_mutex_unlock(philo->meal_lock);
+			print_output(philo, "died");
+			pthread_mutex_lock(philo->dead_lock);
+			*philo->dead = 1;
+			return(pthread_mutex_unlock(philo->dead_lock), 1);
 		}
+		pthread_mutex_unlock(philo->meal_lock);
 		i++;
 	}
 	return (0);
@@ -121,8 +98,6 @@ int	check_if_all_ate(t_philo *philos)
 	}
 	return (0);
 }
-
-
 
 
 //int finished_eating()
@@ -174,7 +149,7 @@ void *monitor(void *ptr)
     philo = (t_philo *)ptr;
     while (1)
 	{
-		if (check_if_dead(philo) == 1 || check_if_all_ate(philo) == 1)
+		if (philo_died(philo) == 1 || check_if_all_ate(philo) == 1)
 			break ;
 	}
 	return (ptr);
@@ -202,9 +177,13 @@ void	destroy_mutexes(t_sim *simulation, pthread_mutex_t *forks, char *str)
 
 void create_threads(t_sim *simulation, pthread_mutex_t *forks)
 {
+	//pthread_t		monitor_thread;
     int			i;
 
 	i = 0;
+	if (pthread_create(&simulation->monitor, NULL, monitor, simulation->philos) != 0)
+        destroy_mutexes(simulation, forks, "Failed to create monitor thread");
+	printf("Created monitor thread\n");
 	while (i < simulation->philos[0].num_of_philos)
 	{
         if (pthread_create(&simulation->philos[i].thread, NULL, philo_routine, &simulation->philos[i]) != 0)
@@ -212,9 +191,8 @@ void create_threads(t_sim *simulation, pthread_mutex_t *forks)
         i++;
     }
 	printf("Created philosopher threads\n");
-	if (pthread_create(&simulation->monitor, NULL, monitor, simulation) != 0)
-        destroy_mutexes(simulation, forks, "Failed to create monitor thread");
-	printf("Created monitor thread\n");
+	if (pthread_join(simulation->monitor, NULL) != 0)
+        destroy_mutexes(simulation, forks, "Failed to join monitor thread");
     while (i < simulation->philos[0].num_of_philos)
 	{
         if (pthread_join(simulation->philos[i].thread, NULL) != 0)
@@ -222,8 +200,6 @@ void create_threads(t_sim *simulation, pthread_mutex_t *forks)
 		i++;
     }
 	printf("Joined philosopher threads\n");
-	if (pthread_join(simulation->monitor, NULL) != 0)
-        destroy_mutexes(simulation, forks, "Failed to join monitor thread");
 	printf("Joined monitor thread\n");
 }
 

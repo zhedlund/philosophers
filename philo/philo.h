@@ -6,7 +6,7 @@
 /*   By: zhedlund <zhedlund@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 16:50:49 by zhedlund          #+#    #+#             */
-/*   Updated: 2024/03/03 22:00:02 by zhedlund         ###   ########.fr       */
+/*   Updated: 2024/03/04 21:15:10 by zhedlund         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include <limits.h>
 # include <stdbool.h>
 
-# define MAX_PHILOS 200
+# define MAX_PHILOS 20
 typedef struct s_philo
 {
 	pthread_t		thread;
