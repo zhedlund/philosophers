@@ -6,17 +6,27 @@
 /*   By: zhedlund <zhedlund@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 18:23:28 by zhedlund          #+#    #+#             */
-/*   Updated: 2024/03/05 21:11:57 by zhedlund         ###   ########.fr       */
+/*   Updated: 2024/03/09 21:05:06 by zhedlund         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+int	ft_usleep(unsigned int time_ms)
+{
+	unsigned int	start;
+
+	start = get_time();
+	while ((get_time() - start) < time_ms)
+		usleep(500);
+	return (0);
+}
+
 int	ft_strlen(const char *str)
 {
 	int	len;
-	
-	if	(str == NULL)
+
+	if (str == NULL)
 		return (0);
 	len = 0;
 	while (str[len])

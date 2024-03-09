@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_valid_input.c                                   :+:      :+:    :+:   */
+/*   input_check.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zhedlund <zhedlund@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 18:25:36 by zhedlund          #+#    #+#             */
-/*   Updated: 2024/02/29 20:42:16 by zhedlund         ###   ########.fr       */
+/*   Updated: 2024/03/09 20:54:35 by zhedlund         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ philosopher dies.
 
 static int	check_args(int argc, char **argv)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 1;
 	while (i < argc)
@@ -59,12 +59,12 @@ int	is_valid_input(int argc, char **argv)
 	if (!check_args(argc, argv))
 		return (0);
 	if (argc < 5 || argc > 6)
-		return(printf("Error: invalid number of arguments\n"), 0);
+		return (printf("Error: invalid number of arguments\n"), 0);
 	if (ft_atoi(argv[1]) <= 0 || ft_atoi(argv[1]) > MAX_PHILOS)
-		return(printf("Error: invalid number of philos\n"), 0);
+		return (printf("Error: invalid number of philos\n"), 0);
 	if (ft_atoi(argv[2]) < 1 || ft_atoi(argv[3]) < 1 || ft_atoi(argv[4]) < 1)
-		return(printf("Error: invalid time_to_die, time_to_eat, time_to_sleep\n"), 0);
+		return (printf("Error: invalid time_to_die/-eat/-sleep\n"), 0);
 	if (argc == 6 && ft_atoi(argv[5]) < 0)
-		return(printf("Error: invalid number_of_times_each_philosopher_must_eat\n"), 0);
+		return (printf("Error: invalid number_of_times_philo_must_eat\n"), 0);
 	return (1);
 }

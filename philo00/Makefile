@@ -5,9 +5,10 @@ CFLAGS = -Wall -Wextra -Werror -pthread -fsanitize=thread
 SRC =	main.c \
 		input_check.c \
 		init.c \
-		utils.c \
 		monitor.c \
 		threads.c \
+		actions.c \
+		utils.c \
 
 OBJ = $(SRC:.c=.o)
 
