@@ -1,0 +1,78 @@
+=== Starting tests where a philosopher should NOT die ===
+
+Please enter desired timer for tests or press ENTER to use default 10 seconds: 
+
+
+Test: [5 800 200 200] | no one should die
+
+Press ENTER to start test, press any other key to exit tester...
+
+[##################################################] 100% (10 / 10 seconds)
+
+OK
+SIGTERM: no process found
+
+Test: [5 600 150 150] | no one should die
+
+Press ENTER to start test, press any other key to exit tester...
+
+[##################################################] 100% (10 / 10 seconds)
+
+OK
+SIGTERM: no process found
+
+Test: [4 410 200 200] | no one should die
+
+Press ENTER to start test, press any other key to exit tester...
+
+[##################################################] 100% (10 / 10 seconds)
+
+OK
+SIGTERM: no process found
+
+Test: [100 800 200 200] | no one should die
+
+Press ENTER to start test, press any other key to exit tester...
+
+[##################################################] 100% (10 / 10 seconds)
+
+OK
+SIGTERM: no process found
+
+Test: [105 800 200 200] | no one should die
+
+Press ENTER to start test, press any other key to exit tester...
+
+[##################################################] 100% (10 / 10 seconds)
+
+OK
+SIGTERM: no process found
+
+Test: [200 800 200 200] | no one should die
+
+Press ENTER to start test, press any other key to exit tester...
+
+[##################################################] 100% (10 / 10 seconds)
+
+OK
+SIGTERM: no process found
+
+No-Die Tests: PASSED: 6/6 | FAILED: 0/6
+
+
+
+
+Test: [4 410 200 200 10] | no one should die, simulation should stop after 10 eats
+
+Test: [1 800 200 200] | a philo should die
+
+Test: [4 310 200 100] | a philo should die
+
+Test: [4 200 205 200] | a philo should die
+
+
+Test: [5 800 200 200 7] | no one should die, simulation should stop after 7 eats
+
+Test: [4 410 200 200 10] | no one should die, simulation should stop after 10 eats
+
+

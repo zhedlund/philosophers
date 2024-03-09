@@ -6,13 +6,13 @@
 /*   By: zhedlund <zhedlund@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 18:23:28 by zhedlund          #+#    #+#             */
-/*   Updated: 2024/03/02 17:24:04 by zhedlund         ###   ########.fr       */
+/*   Updated: 2024/03/05 21:11:57 by zhedlund         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-size_t	ft_strlen(const char *str)
+int	ft_strlen(const char *str)
 {
 	int	len;
 	

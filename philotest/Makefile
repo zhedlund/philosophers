@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: druina <druina@student.hive.fi>            +#+  +:+       +#+         #
+#    By: zhedlund <zhedlund@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/26 14:19:21 by druina            #+#    #+#              #
-#    Updated: 2023/08/18 15:17:39 by druina           ###   ########.fr        #
+#    Updated: 2024/03/05 20:35:27 by zhedlund         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ FLAGS = -Wall -Wextra -Werror -O3 -pthread
 
 HEADER = ./src/philo.h
 
-# SANITIZER = -fsanitize=thread
+SANITIZER = -fsanitize=thread
 
 .PHONY: all clean fclean re debug
 
