@@ -6,7 +6,7 @@
 /*   By: zhedlund <zhedlund@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 16:50:49 by zhedlund          #+#    #+#             */
-/*   Updated: 2024/03/09 21:14:48 by zhedlund         ###   ########.fr       */
+/*   Updated: 2024/03/09 21:17:07 by zhedlund         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void			init_philos(t_philo *philos, t_sim *simulation,
 					pthread_mutex_t *forks, char **argv);
 void			init_forks(pthread_mutex_t *forks, int num_of_philos);
 void			create_threads(t_sim *simulation);
-void			join_threads(t_sim *simulation);
+void			join_threads(t_sim *simulation, pthread_t monitor_thread);
 void			*philo_routine(void *philo);
 void			*monitor_routine(void *philos);
 void			print_output(t_philo *philo, char *str);
